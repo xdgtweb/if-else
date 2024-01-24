@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprendizaje con if-else</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .centrado {
+            display: block;
+            text-align: center;
+            transform: translateY(35vh);
+        }
+
+        #caja {
+            display: inline-block;
+            text-align: left;
+            width: 250px;
+            border: black 3px solid;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        .contenido {
+            width: 70px;
+        }
+
+        label
+        {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        #resultado
+        {
+            font-weight: 700;
+        }
+
+        input
+        {
+            border: 2px black solid;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="centrado">
+        <div id="caja">
+            <label for="palabraInput">david =</label>
+            <input id="palabraInput" class="contenido" type="text">
+            <label>;</label>
+            <br>
+            <br>
+            <br>
+            <label style="color: green">if</label>
+            <label style="color: blue;">(</label>
+            <label>david</label>
+            <label style="color: magenta"> ===</label>
+            <input id="opcionInput" class="contenido" type="text">
+            <label style="color: blue">)</label>
+            <br>
+            <label style="color: green">{</label>
+            <br>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;david</label>
+            <label style="color: green"> = "hola";</label>
+            <br>
+            <label style="color: green">}</label>
+            <br>
+            <label style="color: red">else</label>
+            <br>
+            <label style="color: red">{</label>
+            <br>
+            <label>&nbsp;&nbsp;&nbsp;&nbsp;david</label>
+            <label style="color: red"> = "adios";</label>
+            <br>
+            <label style="color: red">}</label>
+        </div>
+        <br>
+        <br>
+        <label id="resultado"></label>
+    </div>
+    <script>
+        function realizarComparacion() {
+            // Obtenemos el valor de los input
+            var david = document.getElementById("palabraInput").value;
+            var opcionUsuario = document.getElementById("opcionInput").value;
+
+            // Comparamos la palabra ingresada con la opción del usuario usando un if-else
+            if (david === opcionUsuario) {
+                // Si son iguales, asignamos "opcion 1" a la variable 'david'
+                david = "hola";
+                // Mostramos el resultado en un elemento HTML
+                document.getElementById("resultado").style.color = "green";
+                document.getElementById("resultado").innerHTML = 'david tiene "' + david + '"';
+            } else {
+                // Si no son iguales, asignamos la palabra "opcion 2" a la variable 'david'
+                david = "adios";
+                // Mostramos el resultado en un elemento HTML
+                document.getElementById("resultado").style.color = "red";
+                document.getElementById("resultado").innerHTML = 'david tiene "' + david + '"';
+            }
+        }
+        setInterval(realizarComparacion, 100);
+    </script>
+</body>
+
+</html>
