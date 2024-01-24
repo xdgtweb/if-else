@@ -31,13 +31,11 @@
             width: 70px;
         }
 
-        label
-        {
+        label {
             font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
-        #resultado
-        {
+        #resultado {
             font-weight: 700;
         }
 
@@ -45,6 +43,13 @@
         {
             border: 2px black solid;
             border-radius: 5px;
+        }
+
+        select
+        {
+            border: 0px black solid;
+            border-radius: 5px;
+            width: 45px;
         }
     </style>
 </head>
@@ -61,7 +66,15 @@
             <label style="color: green">if</label>
             <label style="color: blue;">(</label>
             <label>david</label>
-            <label style="color: magenta"> ===</label>
+            <select id="operacionInput">
+                <option value="===">===</option>
+                <option value="==">==</option>
+                <option value="!=">!=</option>
+                <option value=">">></option>
+                <option value="<"><</option>
+                <option value=">=">>=</option>
+                <option value="<="><=</option>
+            </select>
             <input id="opcionInput" class="contenido" type="text">
             <label style="color: blue">)</label>
             <br>
@@ -87,23 +100,24 @@
     </div>
     <script>
         function realizarComparacion() {
-            // Obtenemos el valor de los input
+            // Obtenemos el valor de los input y el desplegable
             var david = document.getElementById("palabraInput").value;
+            var operacion = document.getElementById("operacionInput").value;
             var opcionUsuario = document.getElementById("opcionInput").value;
 
-            // Comparamos la palabra ingresada con la opción del usuario usando un if-else
-            if (david === opcionUsuario) {
-                // Si son iguales, asignamos "opcion 1" a la variable 'david'
-                david = "hola";
-                // Mostramos el resultado en un elemento HTML
+            // Construimos la expresión de comparación
+            var expresion = "david " + operacion + ' "' + opcionUsuario + '"';
+
+            // Evaluamos la expresión usando eval()
+            var resultado = eval(expresion);
+
+            // Mostramos el resultado en un elemento HTML
+            if (resultado) {
                 document.getElementById("resultado").style.color = "green";
-                document.getElementById("resultado").innerHTML = 'david tiene "' + david + '"';
+                document.getElementById("resultado").innerHTML = 'david tiene "hola"';
             } else {
-                // Si no son iguales, asignamos la palabra "opcion 2" a la variable 'david'
-                david = "adios";
-                // Mostramos el resultado en un elemento HTML
                 document.getElementById("resultado").style.color = "red";
-                document.getElementById("resultado").innerHTML = 'david tiene "' + david + '"';
+                document.getElementById("resultado").innerHTML = 'david tiene "adios"';
             }
         }
         setInterval(realizarComparacion, 100);
